@@ -5,13 +5,6 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -67,7 +60,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
               {[
-                { name: "Home", action: () => scrollToSection("home") },
+                { name: "Home", to: "/" },
                 { name: "Services", to: "/services" },
                 { name: "About", to: "/about" },
                 { name: "Contact", to: "/contact" }
@@ -77,21 +70,12 @@ const Footer = () => {
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                  {link.to ? (
-                    <Link
-                      to={link.to}
-                      className="text-secondary-foreground/80 hover:text-primary transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  ) : (
-                    <button
-                      onClick={link.action}
-                      className="text-secondary-foreground/80 hover:text-primary transition-colors"
-                    >
-                      {link.name}
-                    </button>
-                  )}
+                  <Link
+                    to={link.to}
+                    className="text-secondary-foreground/80 hover:text-primary transition-colors duration-300"
+                  >
+                    {link.name}
+                  </Link>
                 </motion.li>
               ))}
             </ul>

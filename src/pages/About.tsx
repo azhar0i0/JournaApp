@@ -123,21 +123,32 @@ const About = () => {
                 <motion.div
                   key={index}
                   variants={itemVariants}
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ 
+                    scale: 1.05, 
+                    y: -10,
+                    rotateY: 5,
+                    transition: { type: "spring", stiffness: 300, damping: 15 }
+                  }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Card className="text-center hover:shadow-lg transition-all duration-300">
+                  <Card className="text-center hover:shadow-xl transition-all duration-500 hover:border-primary/20 group">
                     <CardContent className="p-6">
                       <motion.div 
-                        className="bg-accent p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center"
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.6 }}
+                        className="bg-accent p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center group-hover:bg-primary/10 transition-all duration-500"
+                        whileHover={{ 
+                          rotate: 360,
+                          scale: 1.1,
+                          transition: { duration: 0.8 }
+                        }}
                       >
-                        <value.icon className="h-8 w-8 text-accent-foreground" />
+                        <value.icon className="h-8 w-8 text-accent-foreground group-hover:text-primary transition-colors duration-500" />
                       </motion.div>
-                      <h3 className="text-lg font-semibold text-foreground mb-2">
+                      <motion.h3 
+                        className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300"
+                        whileHover={{ scale: 1.05 }}
+                      >
                         {value.title}
-                      </h3>
+                      </motion.h3>
                       <p className="text-sm text-muted-foreground leading-relaxed">
                         {value.description}
                       </p>
@@ -173,23 +184,33 @@ const About = () => {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ 
+                  scale: 1.03, 
+                  y: -10,
+                  transition: { type: "spring", stiffness: 300, damping: 15 }
+                }}
                 className="group"
               >
-                <Card className="hover:shadow-lg transition-all duration-300 h-full border-l-4 border-l-primary/20 hover:border-l-primary">
+                <Card className="hover:shadow-2xl transition-all duration-500 h-full border-l-4 border-l-primary/20 hover:border-l-primary group-hover:bg-gradient-to-r group-hover:from-primary/5 group-hover:to-transparent">
                   <CardContent className="p-8">
                     <div className="flex items-start gap-4">
                       <motion.div 
-                        className="bg-primary/10 p-3 rounded-lg flex-shrink-0 group-hover:bg-primary/20 transition-colors"
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.6 }}
+                        className="bg-primary/10 p-3 rounded-lg flex-shrink-0 group-hover:bg-primary/20 transition-all duration-500 group-hover:shadow-lg"
+                        whileHover={{ 
+                          rotate: 360,
+                          scale: 1.15,
+                          transition: { duration: 0.8 }
+                        }}
                       >
-                        <item.icon className="h-6 w-6 text-primary" />
+                        <item.icon className="h-6 w-6 text-primary group-hover:scale-110 transition-transform duration-300" />
                       </motion.div>
                       <div>
-                        <h3 className="text-xl font-semibold text-foreground mb-3">
+                        <motion.h3 
+                          className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors duration-300"
+                          whileHover={{ x: 5 }}
+                        >
                           {item.title}
-                        </h3>
+                        </motion.h3>
                         <p className="text-muted-foreground leading-relaxed">
                           {item.description}
                         </p>

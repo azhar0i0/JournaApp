@@ -118,12 +118,13 @@ const Contact = () => {
                     <motion.div
                       key={index}
                       className="flex items-start space-x-4"
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                      whileHover={{ scale: 1.02, x: 10 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 15 }}
                     >
                       <motion.div 
                         className="bg-primary/10 p-3 rounded-lg"
-                        whileHover={{ rotate: 5 }}
+                        whileHover={{ rotate: 360, scale: 1.1 }}
+                        transition={{ duration: 0.6 }}
                       >
                         <contact.icon className="h-5 w-5 text-primary" />
                       </motion.div>
@@ -158,6 +159,7 @@ const Contact = () => {
                           value={formData.name}
                           onChange={handleInputChange}
                           required
+                          className="transition-all duration-300 hover:border-primary/50 focus:border-primary"
                         />
                       </motion.div>
                       <motion.div variants={itemVariants}>
@@ -168,6 +170,7 @@ const Contact = () => {
                           value={formData.email}
                           onChange={handleInputChange}
                           required
+                          className="transition-all duration-300 hover:border-primary/50 focus:border-primary"
                         />
                       </motion.div>
                     </motion.div>
@@ -179,6 +182,7 @@ const Contact = () => {
                         placeholder="Your Phone Number"
                         value={formData.phone}
                         onChange={handleInputChange}
+                        className="transition-all duration-300 hover:border-primary/50 focus:border-primary"
                       />
                     </motion.div>
 
@@ -190,6 +194,7 @@ const Contact = () => {
                         onChange={handleInputChange}
                         rows={4}
                         required
+                        className="transition-all duration-300 hover:border-primary/50 focus:border-primary"
                       />
                     </motion.div>
 
@@ -200,22 +205,44 @@ const Contact = () => {
                     >
                       <Button 
                         type="submit" 
-                        className="w-full" 
+                        className="w-full relative overflow-hidden group transition-all duration-500 hover:shadow-lg hover:shadow-primary/25" 
                         size="lg"
                         disabled={isSubmitting}
                       >
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                          initial={{ x: '-100%' }}
+                          whileHover={{ x: '100%' }}
+                          transition={{ duration: 0.6 }}
+                        />
                         {isSubmitting ? (
-                          <motion.span
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                          <motion.div
+                            className="flex items-center gap-2"
+                            animate={{ opacity: [1, 0.5, 1] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
                           >
+                            <motion.div
+                              animate={{ rotate: 360 }}
+                              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            >
+                              <Send className="h-4 w-4" />
+                            </motion.div>
                             Sending...
-                          </motion.span>
+                          </motion.div>
                         ) : (
-                          <>
+                          <motion.div
+                            className="flex items-center gap-2"
+                            whileHover={{ x: 5 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                          >
                             Send Message
-                            <Send className="ml-2 h-4 w-4" />
-                          </>
+                            <motion.div
+                              whileHover={{ x: 5, rotate: -15 }}
+                              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                            >
+                              <Send className="h-4 w-4" />
+                            </motion.div>
+                          </motion.div>
                         )}
                       </Button>
                     </motion.div>
