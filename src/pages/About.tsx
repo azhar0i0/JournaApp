@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { Award, Users, Target, Shield, TrendingUp, Clock, CheckCircle, Globe } from "lucide-react";
+import { Award, Users, Target, Shield, CheckCircle, Lightbulb, HandHeart, Zap } from "lucide-react";
 
 const About = () => {
   const values = [
@@ -29,48 +29,26 @@ const About = () => {
     },
   ];
 
-  const achievements = [
-    {
-      icon: TrendingUp,
-      number: "500+",
-      title: "Clients Served",
-      description: "Successfully managed finances for over 500 businesses across various industries.",
-    },
-    {
-      icon: Clock,
-      number: "15+",
-      title: "Years Experience",
-      description: "Over a decade and a half of expertise in professional accounting services.",
-    },
+  const whyChooseUs = [
     {
       icon: CheckCircle,
-      number: "98%",
-      title: "Client Satisfaction",
-      description: "Consistently high client satisfaction rate through personalized service.",
+      title: "Proven Methodology",
+      description: "Our systematic approach ensures accuracy and compliance while delivering actionable insights for your business growth.",
     },
     {
-      icon: Globe,
-      number: "24/7",
-      title: "Support Available",
-      description: "Round-the-clock support to address your financial needs whenever they arise.",
-    },
-  ];
-
-  const team = [
-    {
-      name: "Sarah Johnson",
-      role: "Senior Partner & CPA",
-      description: "15+ years in corporate accounting with expertise in tax optimization and financial strategy.",
+      icon: Lightbulb,
+      title: "Innovative Solutions",
+      description: "We leverage the latest technology and best practices to streamline your financial processes and reduce complexity.",
     },
     {
-      name: "Michael Chen",
-      role: "Financial Analyst",
-      description: "Specializes in business valuations and market analysis with an MBA in Finance.",
+      icon: HandHeart,
+      title: "Personalized Service",
+      description: "Every client receives tailored attention with solutions designed specifically for their unique business needs and goals.",
     },
     {
-      name: "Emily Rodriguez",
-      role: "Tax Specialist",
-      description: "Expert in tax compliance and planning for both individuals and businesses.",
+      icon: Zap,
+      title: "Proactive Support",
+      description: "We don't just react to problems – we anticipate challenges and provide strategic guidance to keep you ahead.",
     },
   ];
 
@@ -172,7 +150,7 @@ const About = () => {
         </div>
       </motion.section>
 
-      {/* Achievements Section */}
+      {/* Why Choose Us Section */}
       <motion.section
         initial="hidden"
         whileInView="visible"
@@ -183,86 +161,40 @@ const About = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-3xl lg:text-5xl font-bold text-foreground mb-6">
-              Our <span className="text-primary">Achievements</span>
+              Why Choose <span className="text-primary">Journa</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Numbers that speak to our commitment to excellence and client satisfaction
+              Discover what sets us apart and makes us the ideal partner for your financial success
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {achievements.map((achievement, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {whyChooseUs.map((item, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-                className="text-center"
+                whileHover={{ scale: 1.02 }}
+                className="group"
               >
-                <Card className="hover:shadow-lg transition-all duration-300 h-full">
+                <Card className="hover:shadow-lg transition-all duration-300 h-full border-l-4 border-l-primary/20 hover:border-l-primary">
                   <CardContent className="p-8">
-                    <motion.div 
-                      className="bg-primary/10 p-4 rounded-full w-16 h-16 mx-auto mb-4 flex items-center justify-center"
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      <achievement.icon className="h-8 w-8 text-primary" />
-                    </motion.div>
-                    <div className="text-3xl font-bold text-primary mb-2">
-                      {achievement.number}
+                    <div className="flex items-start gap-4">
+                      <motion.div 
+                        className="bg-primary/10 p-3 rounded-lg flex-shrink-0 group-hover:bg-primary/20 transition-colors"
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        <item.icon className="h-6 w-6 text-primary" />
+                      </motion.div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-foreground mb-3">
+                          {item.title}
+                        </h3>
+                        <p className="text-muted-foreground leading-relaxed">
+                          {item.description}
+                        </p>
+                      </div>
                     </div>
-                    <h3 className="text-xl font-semibold text-foreground mb-3">
-                      {achievement.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {achievement.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Team Section */}
-      <motion.section
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={containerVariants}
-        className="py-20"
-      >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-3xl lg:text-5xl font-bold text-foreground mb-6">
-              Meet Our <span className="text-primary">Team</span>
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Experienced professionals dedicated to your financial success
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-              >
-                <Card className="hover:shadow-lg transition-all duration-300 h-full">
-                  <CardContent className="p-8 text-center">
-                    <div className="w-20 h-20 bg-primary/10 rounded-full mx-auto mb-6 flex items-center justify-center">
-                      <Users className="h-10 w-10 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-foreground mb-2">
-                      {member.name}
-                    </h3>
-                    <p className="text-primary font-medium mb-4">
-                      {member.role}
-                    </p>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {member.description}
-                    </p>
                   </CardContent>
                 </Card>
               </motion.div>
